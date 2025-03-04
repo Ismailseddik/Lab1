@@ -1,26 +1,51 @@
 package com.example.demo.aspects;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.aspectj.lang.annotation.After;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class LoggerAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoggerAspect.class);
-
-    @Before("execution(* com.example.demo.controllers.*.*(..))")
-    public void logBeforeMethod(JoinPoint joinPoint) {
-        logger.info("Method called: " + joinPoint.getSignature().getName());
+    @Before("execution(* com.example.demo.controllers.TestController.sayHello(..))")
+    public void logBeforeGet() {
+        System.out.println("Before API call: GET /hello is about to be executed.");
     }
 
-    @AfterReturning(pointcut = "execution(* com.example.demo.controllers.*.*(..))", returning = "result")
-    public void logAfterMethod(JoinPoint joinPoint, Object result) {
-        logger.info("Method executed: " + joinPoint.getSignature().getName() + " | Returned: " + result);
+    @After("execution(* com.example.demo.controllers.TestController.sayHello(..))")
+    public void logAfterGet() {
+        System.out.println("After API call: GET /hello execution completed.");
+    }
+
+    @Before("execution(* com.example.demo.controllers.TestController.sayPost(..))")
+    public void logBeforePost() {
+        System.out.println("Before API call: POST /Post is about to be executed.");
+    }
+
+    @After("execution(* com.example.demo.controllers.TestController.sayPost(..))")
+    public void logAfterPost() {
+        System.out.println("After API call: POST /Post execution completed.");
+    }
+
+    @Before("execution(* com.example.demo.controllers.TestController.sayDelete(..))")
+    public void logBeforeDelete() {
+        System.out.println("Before API call: DELETE /Delete is about to be executed.");
+    }
+
+    @After("execution(* com.example.demo.controllers.TestController.sayDelete(..))")
+    public void logAfterDelete() {
+        System.out.println("After API call: DELETE /Delete execution completed.");
+    }
+
+    @Before("execution(* com.example.demo.controllers.TestController.sayPut(..))")
+    public void logBeforePut() {
+        System.out.println("Before API call: PUT /Put is about to be executed.");
+    }
+
+    @After("execution(* com.example.demo.controllers.TestController.sayPut(..))")
+    public void logAfterPut() {
+        System.out.println("After API call: PUT /Put execution completed.");
     }
 }

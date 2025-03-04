@@ -8,15 +8,15 @@ public class TestController {
     public String sayHello(){
         return "hello";
     }
-    @PostMapping("/Post")
+    @PostMapping("/post")
     public String sayPost(){
         return "Post";
     }
-    @DeleteMapping("/Delete")
+    @DeleteMapping("/delete")
     public String sayDelete(){
         return "Delete";
     }
-    @PutMapping("/Put")
+    @PutMapping("/put")
     public String sayPut(){
         return "Put";
     }
